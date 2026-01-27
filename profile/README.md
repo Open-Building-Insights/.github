@@ -51,8 +51,7 @@ OBI provides detailed parameters to support urban planning, energy analysis, and
 
 ### 🔗 Useful Resources
 
-* **[🌐 Interactive Visualization Platform](https://obi.sdg7energyplanning.org/)** – Explore the data on our map.
- – Access the open data.
+* **[🌐OBI Platform](https://obi.sdg7energyplanning.org/)** – Explore the data on our map.
 
 ---
 
