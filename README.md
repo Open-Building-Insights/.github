@@ -1,2 +1,0 @@
-### Open Building Insights (OBI)
-Open Building Insights (OBI) is a suite of AI-based algorithms/models coupled with an online, open-access, interactive [visualization platform](https://obi.sdg7energyplanning.org/) that offers building-level information at a user's fingertips. OBI consolidates building datasets available in the public domain with state-of-the-art machine learning modelling pipelines, geospatial analytics, and cloud computing, aiming to enrich publicly available information of buildings at national level in targeted geographies.
