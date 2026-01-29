@@ -62,7 +62,7 @@ Open Building Insights provides the amount of dangerously hot days from the past
 * **Extreme Caution**: Number of days with temperature between 29 and 38 Celsius degrees.
 
 ### 5. Energy
-* **Status[^oem].**
+* **Status**[^1]
   * **Electrification Status**: The estimated mean likelihood that a building of interest is connected to the electric grid.
 
   * **Electricity Consumption:**A mean-point estimate of a modeled distribution curve of monthly electricity consumption for a building, given in kWh.
@@ -77,5 +77,5 @@ Open Building Insights provides the amount of dangerously hot days from the past
   * **Installation Cost:** Estimated installation cost of solar panels to cover the suitable roof area in dollars.
 
 
-[^oem] Currently only available in Kenya. 
+[^1]: Currently only available in Kenya. 
 We would like to acknowledge the [Open Energy Maps](https://www.openenergymaps.org) team (Dr. Stephen Lee from Massachusetts Institute of Technology (MIT) & Energy for Growth Hub, and Associate Professor Jay Taneja from the UMass Amherst) for providing building-level electricity access and consumption estimates and supporting with model evaluation metrics of our results in Kenya.
