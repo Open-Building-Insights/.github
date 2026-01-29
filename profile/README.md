@@ -54,7 +54,7 @@ OBI provides detailed parameters to support urban planning, energy analysis, and
 * **[🌐OBI Platform](https://obi.sdg7energyplanning.org/)** – Explore the data on our map.
 
 ### ⚙️ Pipeline
-* ** [Documentation](/pipeline/pipeline_readme.md) - Explore the scripts to generate your own dataset.
+* **[Documentation](/pipeline/pipeline_readme.md)** - Explore the scripts to generate your own dataset.
 
 ---
 
