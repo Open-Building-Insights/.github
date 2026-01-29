@@ -13,7 +13,7 @@ Energy Estimates
 * Solar Rooftop Potencial
 * Data Postprocessing 
 
-![obi-workflow](/documentation/images/workflow.png)
+![obi-workflow](/documentation/images/workflowv2.png)
 
 ### Data preprocessing
 ### Building classification 
