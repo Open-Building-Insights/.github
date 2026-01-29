@@ -23,7 +23,7 @@ Our data is currently available for:
 
 ### 🏗️ What We Measure
 
-OBI provides detailed parameters to support urban planning, energy analysis, and climate resilience. Some of the parameters are listed as follows, a more detailed list is available [here](/pipeline/README.md).
+OBI provides detailed parameters to support urban planning, energy analysis, and climate resilience. Some of the parameters are listed as follows, a more detailed list is available [here](/pipeline/list_attributes/README.md).
 
 #### 🏠 Structural & Urban Morphology
 * **Building Type:** Residential, non-residential, industrial (plus OpenStreetMap tags where available).
@@ -52,6 +52,9 @@ OBI provides detailed parameters to support urban planning, energy analysis, and
 ### 🔗 Useful Resources
 
 * **[🌐OBI Platform](https://obi.sdg7energyplanning.org/)** – Explore the data on our map.
+
+### ⚙️ Pipeline
+* ** [Documentation](/pipeline/pipeline_readme.md) - Explore the scripts to generate your own dataset.
 
 ---
 
