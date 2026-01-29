@@ -36,32 +36,46 @@ Urban areas are searched by a [machine learning model specialized in finding are
   * **Fabric Density Ratio:** The facade density withing a 100 meter square centered around the building in question.
 
 * **Demographics**
-  * **Population:** Estimated inhabitance of residential buildings.
+  * **Population:** Estimated inhabitance of residential buildings [based on wards census and projected population](https://github.com/Open-Building-Insights/socio-econometrics).
 
-### 3. Heat Exposure
-* Extreme Danger
-* Danger
-* Extreme Caution
-
-### 4. Proximity and Access
+### 3. Proximity and Access
 * **Healthcare Access**
-  * Closest Major Hospital by vehicle and foot (distance, travel time, name)
-  * Closest First Contact Facility by vehicle and foot (distance, travel time, name)
+  * **Closest Major Hospital by vehicle and foot (distance, travel time, name):** The name of the closest major hospital for the building using ground communication (roads, streets, sidewalks, etc.). The driving distance and walking distance is provided for the hospital both in kilometers and travel time.
+
+  * **Closest First Contact Facility by vehicle and foot (distance, travel time, name):** The name of the closest health facility of any kind (dentists excluded) for the building using ground communication (roads, streets, sidewalks, etc.). The driving distance and walking distance is provided for the hospital both in kilometers and travel time.
+
 * **Environment**
-  * Closest green area > 10,000m² (distance, area)
-  * Closest Permanent Water Body (distance, area)
+  * **Closest green area > 10,000m² (distance, area):** The distance to the closest significant forest or park in kilometers. The area of the greenery is also provided in hectares.
+
+  * **Closest Permanent Water Body (distance, area):** The distance to the closest permanent water body in kilometers. The surface area of the water body is also provided in hectares.
+
 * **Road Network**
-  * Road Network (distance)
-  * Primary Roads (distance)
+  * **Road Network (distance):** Distance to the closest road of any kind given in kilometers.
+
+  * **Primary Roads (distance):** Distance to the closest major road given in kilometers.
+
+### 4. Heat Exposure: 
+Open Building Insights provides the amount of dangerously hot days from the past year (2024), broken down into the following categories as defined by Humidex: 
+
+* **Extreme Danger**: Number of days with temperature over 46 Celsius degrees.
+* **Danger**: Number of days with temperature between 38 and 46 Celsius degrees.
+* **Extreme Caution**: Number of days with temperature between 29 and 38 Celsius degrees.
 
 ### 5. Energy
-* **Status**
-  * Electrification Status
-  * Electricity Demand
-  * Electricity Data Source
+* **Status[^oem].**
+  * **Electrification Status**: The estimated mean likelihood that a building of interest is connected to the electric grid.
+
+  * **Electricity Consumption:**A mean-point estimate of a modeled distribution curve of monthly electricity consumption for a building, given in kWh.
+
+
+
 * **Solar Rooftop Potential**
-  * Rooftop Suitable Area
-  * Generation
-  * Capacity
-  * Installation Cost
-        
+  * **Rooftop Suitable Area:** The estimated area on the roof of the building suitable to install solar panels given in square meters.
+
+  * **Generation** and **Capacity:** The estimated generation over the year in kWh/year  and estimated capacity in kWp under the assumption, that the suitable area is covered by solar panels.
+
+  * **Installation Cost:** Estimated installation cost of solar panels to cover the suitable roof area in dollars.
+
+
+[^oem] Currently only available in Kenya. 
+We would like to acknowledge the [Open Energy Maps](https://www.openenergymaps.org) team (Dr. Stephen Lee from Massachusetts Institute of Technology (MIT) & Energy for Growth Hub, and Associate Professor Jay Taneja from the UMass Amherst) for providing building-level electricity access and consumption estimates and supporting with model evaluation metrics of our results in Kenya.
