@@ -10,7 +10,7 @@ This section outlines the computational workflow used to obtain OBI datasets in 
 * [Distance Metrics / Proximity Calculations](#proximity-calc)
 * Heat exposure
 Energy Estimates
-*  [Solar Rooftop Potencial](solar-rooftop-potencial)
+*  [Solar Rooftop Potencial](#solar)
 * Data Postprocessing 
 
 ![obi-workflow](/documentation/images/workflowv2.png)
@@ -46,9 +46,9 @@ It uses 4 notebooks that are described as follows:
 ### Data Postprocessing
 ### Energy Estimates [^1]
 
-<a id="solar-rooftop-potencial"></a>
+<a id="solar"></a>
 
-### Solar Rooftop Potencial [^2]
+### Solar Rooftop Potencial [^a]
 The assessment of Solar Rooftop Potential with GIS is not new. Several methodologies and platforms are available. However, there are a few of the limitations we have observed: Some high-level comprehensive methods exist, but are only available in a few locations and even when available, many of those are proprietary, limiting the availability of granular information to the general public. There are three main steps associated with the sizing of solar rooftop potential using Sentinel data, for further information click on each hyperlink:
 
 * **[Step 1: Generating DSM:](https://github.com/Open-Building-Insights/UIEP-SRP/tree/main/dsm_creation)** Estimating the solar potential of rooftops i granular manner is a costly and time-consuming process. It requires high-granularity data, such as Digital Surface Models (DSMs), to accurately map urban morphology and accurately estimate the yield of incoming solar radiation. To address this, this project aims to train a U-Net convolutional neural network. This network is used to develop normalized Digital Surface Models (nDSM) from open-source Sentinel-2 satellite imagery, resampling – in the process – the data from 10 meters to 50-centimeter spatial resolution. 
@@ -59,4 +59,4 @@ The assessment of Solar Rooftop Potential with GIS is not new. Several methodolo
 
 [^1]:We would like to acknowledge the [Open Energy Maps](https://www.openenergymaps.org) team (Dr. Stephen Lee from Massachusetts Institute of Technology (MIT) & Energy for Growth Hub, and Associate Professor Jay Taneja from the UMass Amherst) for providing building-level electricity access and consumption estimates and supporting with model evaluation metrics of our results in Kenya.
 
-[^2] We would like to acknowledge Konstantine Müller et al. for their publication: "Deep Neural Network Regression for Normalized Digital Surface Model Generation With Sentinel-2 Imagery" in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, vol. 16, pp. 8508-8519, 2023, [doi: 10.1109/JSTARS.2023.3297710](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10189905). The generation of Digital Surface Models to estimate solar potential no rooftopos using open-source datasets has been posible due to this work.
+[^a] We would like to acknowledge Konstantine Müller et al. for their publication: "Deep Neural Network Regression for Normalized Digital Surface Model Generation With Sentinel-2 Imagery" in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, vol. 16, pp. 8508-8519, 2023, [doi: 10.1109/JSTARS.2023.3297710](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10189905). The generation of Digital Surface Models to estimate solar potential no rooftopos using open-source datasets has been posible due to this work.
