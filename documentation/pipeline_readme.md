@@ -7,7 +7,7 @@ This section outlines the computational workflow used to obtain OBI datasets in 
 * Building classification 
 * Informal settlement detection 
 * Socio-economics 
-* Distance Metrics / Proximity Calculations  
+* [Distance Metrics / Proximity Calculations](#proximity-calc)
 * Heat exposure
 Energy Estimates
 * Solar Rooftop Potencial
@@ -20,6 +20,8 @@ Energy Estimates
 ### Informal settlement detection 
 ### Socio-economics 
 
+
+<a id="proximity-calc"></a>
 ### Distance Metrics / Proximity Calculations  
 OBI leverages two different methodologies to compute distances. The first methodology computes point-to-point distance from each household to the closest water body or green area.
 
