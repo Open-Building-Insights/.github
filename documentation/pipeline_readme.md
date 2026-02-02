@@ -6,7 +6,7 @@ This section outlines the computational workflow used to obtain OBI datasets in 
 * Data preprocessing 	 
 * Building classification 
 * Informal settlement detection 
-* Socio-economics 
+* [Socio-economics](#population)
 * [Distance Metrics / Proximity Calculations](#proximity-calc)
 * Heat exposure
 Energy Estimates
@@ -18,7 +18,19 @@ Energy Estimates
 ### Data preprocessing
 ### Building classification 
 ### Informal settlement detection 
+
+<a id="population"></a>
 ### Socio-economics 
+The population disaggregation workflow relies on the spatial integration of building footprints, administrative boundaries, and demographic data to downscale ward-level projections to the building level. 
+
+
+| Category | Details |
+| :--- | :--- |
+| **Input** | • **Building footprints** with: latitude, longitude, gfa_in_meters, prediction (building clasification: Residential, Non-residential or Industrial), settlement_classification (formal or informal, for residential buildings). <br> • Wards (GIS layer with polygons). <br> • Wards with projected Population.|
+| **Requirements** | it runs on local machine|
+| **Outputs** | • Number of inhabitants per building footprint <br> • Number of inhabitants per building (informal weighted) <br> |
+
+The process first calculates the Gross Floor Area (GFA) for all residential structures to serve as a capacity proxy. It then applies two parallel methodologies to distribute the population: a standard approach that allocates inhabitants strictly proportional to building size, and a weighted approach that applies a density multiplier to informal settlements to reflect higher occupancy rates. Both methods utilize an integer-constraint algorithm to assign whole numbers of people, ensuring precise alignment with official ward totals.
 
 
 <a id="proximity-calc"></a>
@@ -48,6 +60,13 @@ It uses 4 notebooks that are described as follows:
 
 <a id="solar"></a>
 ### Solar Rooftop Potential [^a]
+
+| Category | Details |
+| :--- | :--- |
+| **Input** | Building footprints, Digital Surface Model, if not available, Sentinel-2 L3C tiles. If not available, Sentinel-2 L1 tiles.|
+| **Requirements** | Machine wigh GPU capacities  |
+| **Outputs** | • Closest Major Hospital (vehicle/foot)<br>• Closest First Contact Facility (vehicle/foot)<br>• Closest Green Area (>10,000m²)<br>• Closest Permanent Water Body |
+
 The assessment of Solar Rooftop Potential with GIS is not new. Several methodologies and platforms are available. However, there are a few of the limitations we have observed: Some high-level comprehensive methods exist, but are only available in a few locations and even when available, many of those are proprietary, limiting the availability of granular information to the general public. There are three main steps associated with the sizing of solar rooftop potential using Sentinel data, for further information click on each hyperlink:
 
 * **[Step 1: Generating DSM:](https://github.com/Open-Building-Insights/UIEP-SRP/tree/main/dsm_creation)** Estimating the solar potential of rooftops i granular manner is a costly and time-consuming process. It requires high-granularity data, such as Digital Surface Models (DSMs), to accurately map urban morphology and accurately estimate the yield of incoming solar radiation. To address this, this project aims to train a U-Net convolutional neural network. This network is used to develop normalized Digital Surface Models (nDSM) from open-source Sentinel-2 satellite imagery, resampling – in the process – the data from 10 meters to 50-centimeter spatial resolution. 
@@ -58,4 +77,4 @@ The assessment of Solar Rooftop Potential with GIS is not new. Several methodolo
 
 [^1]:We would like to acknowledge the [Open Energy Maps](https://www.openenergymaps.org) team (Dr. Stephen Lee from Massachusetts Institute of Technology (MIT) & Energy for Growth Hub, and Associate Professor Jay Taneja from the UMass Amherst) for providing building-level electricity access and consumption estimates and supporting with model evaluation metrics of our results in Kenya. 
 
-[^a]:We would like to acknowledge Konstantine Müller et al. for their publication: "Deep Neural Network Regression for Normalized Digital Surface Model Generation With Sentinel-2 Imagery" in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, vol. 16, pp. 8508-8519, 2023, [doi: 10.1109/JSTARS.2023.3297710](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10189905). The generation of Digital Surface Models to estimate solar potential no rooftopos using open-source datasets has been posible due to this work.
+[^a]:We would like to acknowledge Konstantine Müller et al. for their publication: "Deep Neural Network Regression for Normalized Digital Surface Model Generation With Sentinel-2 Imagery" in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, vol. 16, pp. 8508-8519, 2023, [doi: 10.1109/JSTARS.2023.3297710](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10189905). The generation of Digital Surface Models to estimate solar potential on rooftops using open-source datasets has been posible due to this work.
