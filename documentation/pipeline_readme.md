@@ -64,8 +64,8 @@ It uses 4 notebooks that are described as follows:
 | Category | Details |
 | :--- | :--- |
 | **Input** | Building footprints, Digital Surface Model, if not available, Sentinel-2 L3C tiles. If not available, Sentinel-2 L1 tiles.|
-| **Requirements** | Machine wigh GPU capacities  |
-| **Outputs** | • Closest Major Hospital (vehicle/foot)<br>• Closest First Contact Facility (vehicle/foot)<br>• Closest Green Area (>10,000m²)<br>• Closest Permanent Water Body |
+| **Requirements** |An Intel-based instance with 24 vCPUs, 120 GiB RAM, and a single 48 GB NVIDIA L40S GPU for DSM inference.|
+| **Outputs** | •Suitable area for solar panels <br>• Estimated generation in kwh/year <br>• Estimated capacity in kWp <br>• Estimated Costs of Installation ($USD) |
 
 The assessment of Solar Rooftop Potential with GIS is not new. Several methodologies and platforms are available. However, there are a few of the limitations we have observed: Some high-level comprehensive methods exist, but are only available in a few locations and even when available, many of those are proprietary, limiting the availability of granular information to the general public. There are three main steps associated with the sizing of solar rooftop potential using Sentinel data, for further information click on each hyperlink:
 
