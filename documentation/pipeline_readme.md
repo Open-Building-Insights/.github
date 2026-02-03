@@ -45,7 +45,7 @@ A well-trained machine learning model is used to identify informal settlements i
 | **Requirements** | Runs on local machine|
 | **Outputs** | • Informal classification <br>• Model Confidence 
 
-The script classifies urban areas as formal or informal by replicating the data preparation pipeline used in training, before classification. GHSL-SMOD raster is used as source to extract urban areas within the AOI. The polygons are then divided into uniform square grid tiles with bounding boxes computed to speed up spatial filtering. For each grid, key building statistics (`building count`, `average area`, `maximum area`, and `average height`) are calculated. After applying the same preprocessing steps as training (handling missing values, normalization, dropping non-feature columns), the trained model is applied to generate predictions. 
+The script classifies urban areas as formal or informal by replicating the data preparation pipeline used in training, before classification. GHSL-SMOD raster is used as source to extract urban areas within the AOI. The polygons are then divided into uniform square grid tiles with bounding boxes computed to speed up spatial filtering. For each grid, key building statistics (`building count`, `average area`, `maximum area`, and `average height`) are calculated. After applying the same preprocessing steps as training (handling missing values, normalization, dropping non-feature columns), the trained model is applied to generate predictions. The code used is available in the [Informal Settlement Detection](https://github.com/Open-Building-Insights/informal-settlement-detection/tree/main) repository. 
 
 
 <a id="population"></a>
