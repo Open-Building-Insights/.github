@@ -5,7 +5,7 @@ Open Building Insights is composed of two distinct functional blocks. The first 
 This section outlines the computational workflow used to obtain OBI datasets in India and Kenya. The scripts used are available on [GitHub](https://github.com/orgs/Open-Building-Insights/repositories), where each repository contains the relevant notebooks executed. These include: 
 * [Data preprocessing](#data-preprocessing) 	 
 * Building classification 
-* Informal settlement detection 
+* [Informal settlement detection](#informal-settlement)
 * [Socio-economics](#population)
 * [Distance Metrics / Proximity Calculations](#proximity-calc)
 * Heat exposure
@@ -33,9 +33,19 @@ The preprocessing workflow starts by downloading building footprints either as *
 
 ### Building classification 
 
+<a id="informal-settlement"></a>
 
 ### Informal settlement detection 
 
+A well-trained machine learning model is used to identify informal settlements in urban areas in a given AOI. 
+
+| Category | Details |
+| :--- | :--- |
+| **Input** | • Boundary shapefile <br>• GHSL-SMOD raster file <br>• Trained model <br>• Building footprint dataset (with longitude, latitude, area, and height) 
+| **Requirements** | Runs on local machine|
+| **Outputs** | • Informal classification <br>• Model Confidence 
+
+The script classifies urban areas as formal or informal by replicating the data preparation pipeline used in training before inference. GHSL-SMOD raster is used as source to extract urban areas within the AOI, before dividing into uniform square grid tiles with bounding boxes computed to speed up spatial filtering. For each grid, key building statistics (`building count`, `average area`, `maximum area`, and `average height`) are calculated. After applying the same preprocessing steps as training (handling missing values, normalization, dropping non-feature columns), the trained model is applied to generate predictions. 
 
 
 <a id="population"></a>
