@@ -8,8 +8,8 @@ This section outlines the computational workflow used to obtain OBI datasets in 
 * [Informal settlement detection](#informal-settlement)
 * [Socio-economics](#population)
 * [Distance Metrics / Proximity Calculations](#proximity-calc)
-* Heat exposure
-Energy Estimates
+* [Heat exposure](#heat-exposure)
+* Energy Estimates
 * [Solar Rooftop Potential](#solar)
 * Data Postprocessing 
 
@@ -19,7 +19,7 @@ Energy Estimates
 
 ### Data preprocessing
 
-The base building footprint dataset is downloaded from VIDA and associated metrics computed. The dataset is enriched with additional building attributes from public sources.
+In this first section of the pipeline, the base building footprint dataset is downloaded from VIDA and associated metrics computed. The dataset is further enriched with additional building attributes from public sources.
 
 | Category | Details |
 | :--- | :--- |
@@ -32,6 +32,8 @@ The preprocessing workflow starts by downloading building footprints either as *
 
 
 ### Building classification 
+
+
 
 <a id="informal-settlement"></a>
 
@@ -49,6 +51,7 @@ The script classifies urban areas as formal or informal by replicating the data 
 
 
 <a id="population"></a>
+
 ### Socio-economics 
 The population disaggregation workflow relies on the spatial integration of building footprints, administrative boundaries, and demographic data to downscale ward-level projections to the building level. 
 
@@ -83,8 +86,24 @@ It uses 4 notebooks that are described as follows:
     * [Fix not routable](https://github.com/Open-Building-Insights/distance_metrics/blob/main/osrm/3.%20Fix_not_routable.ipynb) it computes the missing metrics from the unroutable buildings by averaging values from neighboring building footprints. 
 
 
+<a id="heat-exposure"></a>
+
 ### Heat exposure
+
+In this workflow, Google Earth Engine (GEE) is used to calculate heat-exposure indicators based on the Humidex index.
+
+| Category | Details |
+| :--- | :--- |
+| **Input** | • GEE account & project setup <br>• Building footprint dataset (with longitude, latitude) 
+| **Requirements** | Runs on local machine|
+| **Outputs** | • 4-band yearly raster <br>• 4 columns added to the building dataset (Extreme_Danger, Danger, Extreme_Caution, Caution) 
+
+
+The script computes building-level heat exposure parameters based on the Humidex index, using ERA5-Land hourly reanalysis data. It processes one full calendar year (2024) of climate data to calculate daily maximum Humidex values, classifies each day into four heat-risk categories, aggregates these classifications into monthly and yearly heat-exposure rasters, and finally disaggregates the yearly results to OBI building footprints. The output is a set of building-level attributes describing how many days in the year each building is exposed to different levels of heat stress. The code used is available in the [Heat Exposure](https://github.com/Open-Building-Insights/heat_exposure/tree/main) repository. 
+
 ### Data Postprocessing
+
+
 ### Energy Estimates [^1]
 
 <a id="solar"></a>
