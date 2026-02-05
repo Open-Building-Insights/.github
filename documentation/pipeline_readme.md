@@ -105,7 +105,7 @@ The script computes building-level heat exposure parameters based on the Humidex
 <a id="data-postprocessing"></a>
 
 ### Data Postprocessing
-In this section, further processing is done on the OBI building dataset to add non-residential and indsutrial building types from OSM tags, add energy estimates, and mask sensitive buildings. 
+In this section, further processing is done on the OBI building dataset to add building types derived from OSM tags, add energy estimates, and mask sensitive buildings. 
 
 #### Extracting OSM Tags  
 | Category | Details |
