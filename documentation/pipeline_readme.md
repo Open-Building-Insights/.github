@@ -105,32 +105,37 @@ The script computes building-level heat exposure parameters based on the Humidex
 <a id="data-postprocessing"></a>
 
 ### Data Postprocessing
-In this section, further processing is done on the OBI building dataset to add building types derived from OSM tags, add energy estimates, and mask sensitive buildings. 
+In this section, further processing is done on the OBI building dataset to add building types derived from OSM tags, add energy estimates, and mask sensitive buildings. The code used is available in the [Data Postprocessing](https://github.com/Open-Building-Insights/data-postprocessing/tree/main) repository. 
 
-#### Extracting OSM Tags  
+#### [1. Extracting OSM Tags](https://github.com/Open-Building-Insights/data-postprocessing/blob/main/notebooks/1.%20OSM_labeled_data_Parquet_Update.ipynb) 
 | Category | Details |
 | :--- | :--- |
 | **Input** | •  Overpass API endpoint <br>• Building footprint dataset (with longitude, latitude, classification) 
 | **Requirements** | Runs on local machine|
-| **Outputs** | • Classification disaggregation for non-residential and indsutrial buildings  
+| **Outputs** | Classification disaggregation for non-residential and indsutrial buildings  
 
-The notebook enriches an existing buildings dataset by adding OSM-derived building type labels. This is achieved by querying the **Overpass API** for tagged OSM features within the AOI, extracting results as **ways**, **relations**, and **nodes** for categories like schools, hospitals, commercial/industrial areas, offices, fuel stations, and other points of interest. Way/relation geometries are written as polygons, while node features are converted into small polygons for spatial matching. The code used is available in the [Data Postprocessing](https://github.com/Open-Building-Insights/data-postprocessing/tree/main) repository. 
+The notebook enriches an existing buildings dataset by adding OSM-derived building type labels. This is achieved by querying the **Overpass API** for tagged OSM features within the AOI, extracting results as **ways**, **relations**, and **nodes** for categories like schools, hospitals, commercial/industrial areas, offices, fuel stations, and other points of interest. Way/relation geometries are written as polygons, while node features are converted into small polygons for spatial matching. 
 
 
 
-#### Energy Estimates [^1]
+#### [2. Energy Estimates](https://github.com/Open-Building-Insights/data-postprocessing/tree/main/notebooks) [^1]
 | Category | Details |
 | :--- | :--- |
-| **Input** | • Energy estimates file  <br>• Building footprint dataset (with longitude, latitude, classification) 
+| **Input** | • Energy estimates (from OEMaps)  <br>• Building footprint dataset (with longitude, latitude, classification) 
 | **Requirements** | Requires IBM COS and DB2 connection |
 | **Outputs** | •  Electricity access percentage <br>• Electricity consumption (kWh/month) <br>• Standardized electricity consumption (kWh/month) 
 
+There are two notebooks used to add electricity access and consumption estimates to the Kenya building dataset. The first notebook downloads tiled energy-estimation GeoJSONs, pulls the corresponding OBI buildings from IBM DB2 for the same tile extent, and performs a one-to-one spatial matching so each OBI footprint is linked to at most one energy-estimation footprint, saving the matched results as per-tile parquet outputs. The second notebook then takes those matched parquet files, standardizes the energy field names, and updates the IBM DB2 building table in parallel so each building record is enriched with the energy columns.
 
+#### [3. Masking Sensitive Buildings](https://github.com/Open-Building-Insights/data-postprocessing/blob/main/notebooks/4.%20mask_buildings_parquet.ipynb) 
 
-#### Masking Sensitive Buildings 
+| Category | Details |
+| :--- | :--- |
+| **Input** | Building footprint dataset (with at least longitude, latitude, classification, OSM type) 
+| **Requirements** | Runs on local machine |
+| **Outputs** | Updated building dataset (with redacted attributes for millitary-related buildings)
 
-
-
+This is a redaction step that protects sensitive records in the OBI buildings dataset. The notebook identifies buildings flagged as `osm_type = "Inactive"` (used for sensitive categories such as military-related features), and then masks them by clearing a set of non-public attributes. It also sets `classification = "Inactive"` for these buildings, which appear as gray inactive buildings on the [OBI platform](https://obi.sdg7energyplanning.org/).  
 
 
 <a id="solar"></a>
