@@ -9,9 +9,9 @@ This section outlines the computational workflow used to obtain OBI datasets in 
 * [Socio-economics](#population)
 * [Distance Metrics / Proximity Calculations](#proximity-calc)
 * [Heat exposure](#heat-exposure)
-* Energy Estimates
+* [Data Postprocessing](#data-postprocessing)
 * [Solar Rooftop Potential](#solar)
-* Data Postprocessing 
+
 
 ![obi-workflow](/documentation/images/workflowv2.png)
 
@@ -101,10 +101,37 @@ In this workflow, Google Earth Engine (GEE) is used to calculate heat-exposure i
 
 The script computes building-level heat exposure parameters based on the Humidex index, using ERA5-Land hourly reanalysis data. It processes one full calendar year (2024) of climate data to calculate daily maximum Humidex values, classifies each day into four heat-risk categories, aggregates these classifications into monthly and yearly heat-exposure rasters, and finally disaggregates the yearly results to OBI building footprints. The output is a set of building-level attributes describing how many days in the year each building is exposed to different levels of heat stress. The code used is available in the [Heat Exposure](https://github.com/Open-Building-Insights/heat_exposure/tree/main) repository. 
 
+
+<a id="data-postprocessing"></a>
+
 ### Data Postprocessing
+In this section, further processing is done on the OBI building dataset to add non-residential and indsutrial building types from OSM tags, add energy estimates, and mask sensitive buildings. 
+
+#### Extracting OSM Tags  
+| Category | Details |
+| :--- | :--- |
+| **Input** | •  Overpass API endpoint <br>• Building footprint dataset (with longitude, latitude, classification) 
+| **Requirements** | Runs on local machine|
+| **Outputs** | • Classification disaggregation for non-residential and indsutrial buildings  
+
+The notebook enriches an existing buildings dataset by adding OSM-derived building type labels. This is achieved by querying the **Overpass API** for tagged OSM features within the AOI, extracting results as **ways**, **relations**, and **nodes** for categories like schools, hospitals, commercial/industrial areas, offices, fuel stations, and other points of interest. Way/relation geometries are written as polygons, while node features are converted into small polygons for spatial matching. The code used is available in the [Data Postprocessing](https://github.com/Open-Building-Insights/data-postprocessing/tree/main) repository. 
 
 
-### Energy Estimates [^1]
+
+#### Energy Estimates [^1]
+| Category | Details |
+| :--- | :--- |
+| **Input** | • Energy estimates file  <br>• Building footprint dataset (with longitude, latitude, classification) 
+| **Requirements** | Requires IBM COS and DB2 connection |
+| **Outputs** | •  Electricity access percentage <br>• Electricity consumption (kWh/month) <br>• Standardized electricity consumption (kWh/month) 
+
+
+
+#### Masking Sensitive Buildings 
+
+
+
+
 
 <a id="solar"></a>
 ### Solar Rooftop Potential [^a]
