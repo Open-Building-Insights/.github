@@ -19,11 +19,11 @@ This section outlines the computational workflow used to obtain OBI datasets in 
 
 ### Data preprocessing
 
-In this first section of the pipeline, the base building footprint dataset is downloaded from VIDA and associated metrics computed. The dataset is further enriched with additional building attributes from public sources.
+In this first section of the pipeline, the base building footprint dataset is downloaded and associated metrics computed. The dataset is further enriched with additional building attributes from public sources.
 
 | Category | Details |
 | :--- | :--- |
-| **Input** | Boundary shapefile, rasters (Open Buildings 2.5D Temporal, GHSL-SMOD, EarthEnv-DEM90)
+| **Input** | Boundary shapefile, rasters (Open Buildings 2.5D Temporal, GHSL-SMOD, EarthEnv-DEM90)|
 | **Requirements** | Runs on local machine|
 | **Outputs** | Building footprint dataset with: <br>• Coordinates <br>• ID <br>• Geometry <br>• Area in meters <br>• Perimeter in meters <br>• Number of building faces <br>• Height <br>• Number of floors <br>• Gross floor area (GFA) <br>• Urbanization classes <br>• Elevation
 
@@ -33,6 +33,21 @@ The preprocessing workflow starts by downloading building footprints either as *
 <a id="building_classification"></a>
 
 ### Building classification 
+
+| Category | Details |
+| :--- | :--- |
+| **Input** | Building footprints|
+| **Requirements** | Runs on local machine|
+| **Outputs** | Building footprint dataset with classification type: Residential, Non-residential and industrial|
+
+The building classification relies on two depositories to classify the building in one of these 3 categories: Residential, Non-Residential and Industrial. The first repository has notebooks that computes a set of  parameters that were used to train the inference model. The second repository normalises the parameters and runs the classification model.
+
+- 1_helper_extract_roads. It takes the boundary of the AoI and it gets the road network from OpenStreetMap. The output is a GIS file with the road network.
+- 2_alternative_building_density. It computes the building density within specific distances (50m, 100m, 250m, and 500m) of each individual building. The input is the building footprint dataset, while the output contains the building density for each distance as new columns.
+- 3_preprocessing_ratio_radius_roads. It takes as input the downloaded GIS file from notebook, it creates four categories depending on the road usage (major road, secondary road, etc.) and it computes the distance from each building footprint and its density. Additionally, it also computes different metrics associated with the building geometry, such as the perimeter to area ratio, building radius, number of faces and the squareness. All of these parameters were used when training the model for building classification, thus they are an integral part of the building classification pipeline. 
+- 4_real_data_predictions_India. It uses the new computed information to classify the building in either residential, non-residential or industrial for Indian settings.
+- 4_real_data_predictions_Kenya. It uses the new computed information to classify the building in either residential, non-residential or industrial for Kenyan settings.
+- 5_Merging_datasets. The informal/formal classification model is done only in urban settings. The underlying assumption is that this kind of housing emerges in large built-up urban environments as a response to lack of new infrastructure and internal migration flows. The urban environments are filtered out based on the Global Human Settlement Layer.
 
 
 
