@@ -33,14 +33,13 @@ The preprocessing workflow starts by downloading building footprints either as *
 <a id="building_classification"></a>
 
 ### Building classification 
+The building classification relies on two depositories to classify the building in one of these 3 categories: Residential, Non-Residential and Industrial. The first repository has notebooks that computes a set of  parameters that were used to train the inference model. The second repository normalises the parameters and runs the classification model.
 
 | Category | Details |
 | :--- | :--- |
 | **Input** | Building footprints|
 | **Requirements** | Runs on local machine|
 | **Outputs** | Building footprint dataset with classification type: Residential, Non-residential and industrial|
-
-The building classification relies on two depositories to classify the building in one of these 3 categories: Residential, Non-Residential and Industrial. The first repository has notebooks that computes a set of  parameters that were used to train the inference model. The second repository normalises the parameters and runs the classification model.
 
 - 1_helper_extract_roads. It takes the boundary of the AoI and it gets the road network from OpenStreetMap. The output is a GIS file with the road network.
 - 2_alternative_building_density. It computes the building density within specific distances (50m, 100m, 250m, and 500m) of each individual building. The input is the building footprint dataset, while the output contains the building density for each distance as new columns.
