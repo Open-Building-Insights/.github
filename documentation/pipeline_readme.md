@@ -4,7 +4,7 @@ Open Building Insights is composed of two distinct functional blocks. The first 
 ## Suggested pipeline  
 This section outlines the computational workflow used to obtain OBI datasets in India and Kenya. The scripts used are available on [GitHub](https://github.com/orgs/Open-Building-Insights/repositories), where each repository contains the relevant notebooks executed. These include: 
 * [Data preprocessing](#data-preprocessing) 	 
-* Building classification 
+* [Building classification](#building_classification)
 * [Informal settlement detection](#informal-settlement)
 * [Socio-economics](#population)
 * [Distance Metrics / Proximity Calculations](#proximity-calc)
@@ -30,6 +30,7 @@ In this first section of the pipeline, the base building footprint dataset is do
 The preprocessing workflow starts by downloading building footprints either as **S2 partitions** for India or as a **single country GeoParquet** for Kenya, then filters footprints to the Area of interest (AOI), applies a minimum confidence threshold of 0.7, removes duplicates, and computes footprint metrics (`area_in_meters`, `perimeter_in_meters`, `building_faces`). Next, the script downloads **Google Open Buildings 2.5D Temporal** rasters for the AOI, samples height pixels within each footprint to compute `height_mean`, `height_median`, and `height_max`, and derives `floors` and `GFA` from the standardized height and footprint area. In the next steps, the script assigns urbanization classes from **GHS-SMOD** and elevation from **EarthEnv-DEM90** to each building. The associated code is available in [Notebooks](https://github.com/Open-Building-Insights/data-preprocessing/tree/main/notebooks) in the [Data Preprocessing repository](https://github.com/Open-Building-Insights/data-preprocessing).
 
 
+<a id="building_classification"></a>
 
 ### Building classification 
 
